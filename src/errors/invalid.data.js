@@ -1,6 +1,6 @@
-export function invalidDataError() {
+export function invalidDataError(message) {
   return {
-    type: "incompleteData",
-    message: `Preencha todos os dados!`,
+    type: "invalidData",
+    message: message,
   };
 }
