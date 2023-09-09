@@ -5,7 +5,7 @@ async function create(req, res) {
   const { firstName, lastName } = req.body;
 
   await passengerServices.create(firstName, lastName);
-  return res.sendStatus(200);
+  return res.sendStatus(httpStatus.OK);
 }
 
 export const passengerControllers = { create };

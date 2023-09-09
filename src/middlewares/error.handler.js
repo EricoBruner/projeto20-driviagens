@@ -5,5 +5,9 @@ export default function errorHandler(error, req, res, next) {
     return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.message);
   }
 
+  if (error.type === "conflitData") {
+    return res.status(httpStatus.CONFLICT).send(error.message);
+  }
+
   return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error);
 }
