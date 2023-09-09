@@ -1,10 +1,23 @@
 import dotenv from "dotenv";
-import express from "express";
+import express, { json } from "express";
+import "express-async-errors";
+import cors from "cors";
+import errorHandler from "./middlewares/error.handler.js";
+import router from "./routers/index.js";
+
 dotenv.config();
 
 const app = express();
 
-const port = process.env.NODE_ENV || 5000;
+app.use(json());
+app.use(cors());
+
+app.use(router);
+
+app.use(errorHandler);
+
+const port = process.env.PORT || 5000;
+
 app.listen(5000, () => {
   console.log(`👾 Server running on port ${port}! 👾`);
 });
