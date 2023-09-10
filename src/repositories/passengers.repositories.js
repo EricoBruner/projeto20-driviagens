@@ -7,4 +7,8 @@ async function create(firstName, lastName) {
   );
 }
 
-export const passengerRepositories = { create };
+async function readById(id) {
+  return await db.query(`SELECT * FROM passengers WHERE id=$1`, [id]);
+}
+
+export const passengersRepositories = { create, readById };
