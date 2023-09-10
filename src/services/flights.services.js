@@ -10,13 +10,13 @@ async function create(origin, destination, date) {
 
   const {
     rows: [origExist],
-  } = await citiesRepositories.readCityById(origin);
+  } = await citiesRepositories.readById(origin);
 
   if (!origExist) throw notFoundError("Origin");
 
   const {
     rows: [destExist],
-  } = await citiesRepositories.readCityById(destination);
+  } = await citiesRepositories.readById(destination);
 
   if (!destExist) throw notFoundError("Destination");
 

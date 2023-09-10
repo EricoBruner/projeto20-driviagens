@@ -4,7 +4,7 @@ import { citiesRepositories } from "../repositories/cities.repositories.js";
 async function create(cityName) {
   const {
     rows: [cityExist],
-  } = await citiesRepositories.readCityByName(cityName);
+  } = await citiesRepositories.readByName(cityName);
 
   if (cityExist) throw conflitDataError(cityExist.name);
 
