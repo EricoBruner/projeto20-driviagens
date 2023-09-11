@@ -26,4 +26,15 @@ async function create(origin, destination, date) {
   await flightsRepositories.create(origin, destination, formattedDate);
 }
 
-export const flightsServices = { create };
+async function read(origin, destination, smallerDate, biggerDate) {
+  const { rows: flights } = await flightsRepositories.read(
+    origin,
+    destination,
+    smallerDate,
+    biggerDate
+  );
+
+  return flights;
+}
+
+export const flightsServices = { create, read };

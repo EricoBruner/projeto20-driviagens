@@ -7,3 +7,8 @@ export const flightSchema = joi.object({
   destination: joi.number().positive().required(),
   date: joi.date().min("now").format("DD-MM-YYYY").required(),
 });
+
+export const getFlightSchema = joi.object({
+  smallerDate: joi.date().format("DD-MM-YYYY"),
+  biggerDate: joi.date().format("DD-MM-YYYY"),
+});
