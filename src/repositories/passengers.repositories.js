@@ -7,8 +7,28 @@ async function create(firstName, lastName) {
   );
 }
 
+async function read(name = "") {
+  return await db.query(
+    `WITH result AS (
+      SELECT
+        COUNT(travels.id) AS travels, 
+        CONCAT(pas."firstName", ' ', pas."lastName") AS passenger 
+      FROM passengers AS pas
+      JOIN travels ON travels."passengerId" = pas.id
+      GROUP BY pas.id
+    )
+    
+    SELECT *
+    FROM result
+    WHERE passenger ILIKE $1
+    ORDER BY travels DESC;
+    `,
+    [`%${name}%`]
+  );
+}
+
 async function readById(id) {
   return await db.query(`SELECT * FROM passengers WHERE id=$1`, [id]);
 }
 
-export const passengersRepositories = { create, readById };
+export const passengersRepositories = { create, readById, read };

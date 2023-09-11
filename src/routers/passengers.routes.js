@@ -9,5 +9,6 @@ passengerRouter.post(
   passengerValidator,
   passengerControllers.create
 );
+passengerRouter.get("/passengers", passengerControllers.read);
 
 export default passengerRouter;

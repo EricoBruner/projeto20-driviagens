@@ -21,6 +21,10 @@ export default function errorHandler(error, req, res, next) {
     return res.status(httpStatus.BAD_REQUEST).send(error.message);
   }
 
+  if (error.type === "internalServer") {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);
+  }
+
   console.log(error);
   return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error);
 }
