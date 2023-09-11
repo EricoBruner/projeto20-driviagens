@@ -14,7 +14,7 @@ async function read(name = "") {
         COUNT(travels.id) AS travels, 
         CONCAT(pas."firstName", ' ', pas."lastName") AS passenger 
       FROM passengers AS pas
-      JOIN travels ON travels."passengerId" = pas.id
+      LEFT JOIN travels ON travels."passengerId" = pas.id
       GROUP BY pas.id
     )
     
